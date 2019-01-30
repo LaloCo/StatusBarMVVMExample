@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StatusBarMVVMExample"
+        xmlns:vm="clr-namespace:StatusBarMVVMExample.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+
+    <Window.Resources>
+        <vm:MainVM x:Key="vm"/>
+    </Window.Resources>
+    
+    <StackPanel DataContext="{StaticResource vm}">
+        <Button Content="Add one"
+                Command="{Binding AddCommand}"
+                Margin="0,0,0,10"/>
+        <StatusBar>
+            <StatusBarItem>
+                <TextBlock Text="{Binding Counter}"/>
+            </StatusBarItem>
+        </StatusBar>
+    </StackPanel>
 </Window>
